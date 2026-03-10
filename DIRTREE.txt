@@ -1,0 +1,102 @@
+py-flink-v2/
+├── README.md
+├── .env
+├── docker-compose.yml
+├── Makefile
+├── docs/
+│   ├── architecture.md
+│   ├── walkthrough.md
+│   ├── flink-concepts.md
+│   └── demo-scenarios.md
+├── infra/
+│   ├── redpanda/
+│   │   └── redpanda.yaml
+│   ├── minio/
+│   │   ├── init/
+│   │   │   └── create-buckets.sh
+│   │   └── policies/
+│   ├── flink/
+│   │   ├── conf/
+│   │   │   ├── flink-conf.yaml
+│   │   │   ├── log4j-console.properties
+│   │   │   └── sql-client-defaults.yaml
+│   │   ├── lib/
+│   │   │   ├── flink-sql-connector-kafka-2.jar
+│   │   │   ├── flink-s3-fs-hadoop-1.jar
+│   │   │   └── additional-connectors/
+│   │   └── init/
+│   │       └── register-jars.sh
+│   └── grafana/
+│       ├── provisioning/
+│       └── dashboards/
+├── jobs/
+│   ├── java/
+│   │   └── streaming-demo/
+│   │       ├── pom.xml
+│   │       └── src/
+│   │           ├── main/
+│   │           │   ├── java/
+│   │           │   │   └── com/example/flink/
+│   │           │   │       ├── DataStreamJob.java
+│   │           │   │       ├── WindowedAggregationJob.java
+│   │           │   │       ├── EventTimeJob.java
+│   │           │   │       ├── CheckpointedJob.java
+│   │           │   │       ├── model/
+│   │           │   │       ├── functions/
+│   │           │   │       └── sinks/
+│   │           │   └── resources/
+│   │           │       └── log4j2.properties
+│   │           └── test/
+│   │               └── java/
+│   └── sql/
+│       ├── 01_create_catalogs.sql
+│       ├── 02_create_source_tables.sql
+│       ├── 03_create_sink_tables.sql
+│       ├── 04_live_queries.sql
+│       └── 05_cleanup.sql
+├── producers/
+│   ├── python/
+│   │   ├── requirements.txt
+│   │   └── src/
+│   │       ├── produce_orders.py
+│   │       ├── produce_clicks.py
+│   │       └── produce_sensor_data.py
+│   └── sample-data/
+│       ├── bootstrap/
+│       │   ├── orders.json
+│       │   └── clicks.json
+│       └── schemas/
+│           ├── orders.schema.json
+│           └── clicks.schema.json
+├── consumers/
+│   ├── python/
+│   │   └── src/
+│   │       └── read_results.py
+│   └── notebooks/
+│       └── inspect_results.ipynb
+├── state/
+│   ├── checkpoints/
+│   ├── savepoints/
+│   └── warehouse/
+├── scripts/
+│   ├── up.sh
+│   ├── down.sh
+│   ├── reset.sh
+│   ├── build-job.sh
+│   ├── submit-job.sh
+│   ├── cancel-job.sh
+│   ├── savepoint-job.sh
+│   ├── seed-topics.sh
+│   ├── seed-minio.sh
+│   └── demo-flow.sh
+├── tests/
+│   ├── smoke/
+│   │   ├── test_redpanda_topics.sh
+│   │   ├── test_minio_buckets.sh
+│   │   └── test_flink_cluster.sh
+│   └── integration/
+│       └── test_end_to_end.py
+└── ui/
+    ├── app/
+    │   └── optional-demo-ui/
+    └── assets/

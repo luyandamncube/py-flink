@@ -1,0 +1,45 @@
+# infra\flink\conf\sql-client-defaults.yaml
+execution:
+  planner: blink
+  type: streaming
+  result-mode: table
+  current-catalog: default_catalog
+  current-database: default_database
+
+configuration:
+  parallelism.default: 2
+  execution.checkpointing.interval: 30s
+  execution.checkpointing.mode: EXACTLY_ONCE
+  execution.checkpointing.timeout: 10min
+  execution.checkpointing.min-pause: 5s
+  execution.checkpointing.max-concurrent-checkpoints: 1
+  execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+
+  state.checkpoints.dir: s3://flink-checkpoints/checkpoints
+  state.savepoints.dir: s3://flink-savepoints/savepoints
+
+  restart-strategy.type: fixed-delay
+  restart-strategy.fixed-delay.attempts: 3
+  restart-strategy.fixed-delay.delay: 10s
+
+  s3.endpoint: http://minio:9000
+  s3.path.style.access: true
+  s3.access-key: minio
+  s3.secret-key: minio123
+  s3.connection.ssl.enabled: false
+
+  table.local-time-zone: UTC
+  table.exec.source.idle-timeout: 10s
+
+  pipeline.name: flink-sql-demo
+
+catalogs: []
+
+modules:
+  - name: core
+    type: core
+
+sql-client:
+  execution:
+    max-table-result-rows: 1000
+    display-query-time-cost: true
