@@ -26,7 +26,7 @@ docker exec -it flink-demo-sql-client /opt/flink/bin/sql-client.sh -f /workspace
 docker exec -it flink-demo-sql-client /opt/flink/bin/sql-client.sh -f /workspace/jobs/sql/00_setup.sql
 
 # OR 
-make job 00 # will run /workspace/jobs/sql/00_setup.sql"
+make job 00 # will run /workspace/jobs/sql/00_setup.sql)"
 make job 01 # will run /workspace/jobs/sql/01_high_value_orders.sql"
 make job 02 # will run /workspace/jobs/sql/02_windowed_revenue_by_region.sql"
 make job 03 # will run /workspace/jobs/sql/03_order_counts_by_region.sql"
@@ -44,6 +44,14 @@ make job 06 # will run /workspace/jobs/sql/06_filesystem_sink.sql"
 ## Flink UI Example
 
 ![Flink UI](docs/img/flink-jobs-1.png)
+
+## MinIO UI Example
+```bash
+MINIO_ROOT_USER: minio
+MINIO_ROOT_PASSWORD: minio123
+```
+
+![Flink UI](docs/img/minio-1.png)
 
 ### Nuclear Reset
 
